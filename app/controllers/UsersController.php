@@ -73,7 +73,7 @@ class UsersController extends BaseController {
 		$user->save();
 		$user->roles()->sync($input['roles']);
 
-		return Redirect::route('admin.index')->withMessage(Bootstrap::success('User created successfully.'));
+		return Redirect::route('admin.index')->withMessage(Bootstrap::success('User created successfully.', true));
 	}
 
 	/**
@@ -116,7 +116,7 @@ class UsersController extends BaseController {
 		$user->save();
 		$user->roles()->sync($input['roles']);
 
-		return Redirect::route('admin.users.index')->withMessage(Bootstrap::success('User updated successfully.'));
+		return Redirect::route('admin.users.index')->withMessage(Bootstrap::success('User updated successfully.', true));
 	}
 
 	/**
@@ -135,10 +135,10 @@ class UsersController extends BaseController {
 		{
 			Auth::logout();
 
-			return Redirect::home()->withMessage(Bootstrap::success('User has been destroyed.'));
+			return Redirect::home()->withMessage(Bootstrap::success('User has been destroyed.', true));
 		}
 
-		return Redirect::route('admin.users.index')->withMessage(Bootstrap::success('User has been destroyed.'));
+		return Redirect::route('admin.users.index')->withMessage(Bootstrap::success('User has been destroyed.', true));
 	}
 
 }

@@ -58,7 +58,7 @@ class UserController extends BaseController {
 		$user->password = Hash::make($input['password']);
 		$user->save();
 
-		return Redirect::route('login')->withMessage(Bootstrap::success('Registraion successfull.'));
+		return Redirect::route('login')->withMessage(Bootstrap::success('Registraion successfull.', true));
 	}
 
 	/**
@@ -72,7 +72,7 @@ class UserController extends BaseController {
 	{
 		if ($id != Auth::user()->id)
 		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.'));
+			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
 		}
 
 		$user = Auth::user();
@@ -91,7 +91,7 @@ class UserController extends BaseController {
 	{
 		if ($id != Auth::user()->id)
 		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.'));
+			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
 		}
 
 		$user = Auth::user();
@@ -110,7 +110,7 @@ class UserController extends BaseController {
 	{
 		if ($id != Auth::user()->id)
 		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.'));
+			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
 		}
 
 		$input = Input::only('name', 'email', 'password', 'password_confirmation');
@@ -128,7 +128,7 @@ class UserController extends BaseController {
 		$user->save();
 
 		return Redirect::route('user.show', $user->id)
-			->withMessage(Bootstrap::success('Profile updated successfully.'));
+			->withMessage(Bootstrap::success('Profile updated successfully.', true));
 	}
 
 	/**
@@ -142,7 +142,7 @@ class UserController extends BaseController {
 	{
 		if ($id != Auth::user()->id)
 		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.'));
+			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
 		}
 
 		$user = Auth::user();
@@ -150,7 +150,7 @@ class UserController extends BaseController {
 
 		Auth::logout();
 
-		return Redirect::home()->withMessage(Bootstrap::success('Profile has been destroyed.'));
+		return Redirect::home()->withMessage(Bootstrap::success('Profile has been destroyed.', true));
 	}
 
 }
