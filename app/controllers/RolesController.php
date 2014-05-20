@@ -61,7 +61,7 @@ class RolesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
+		$input = Input::only('name', 'active');
 		$this->rolesCreateForm->validate($input);
 
 		$role = new Role;
@@ -95,8 +95,7 @@ class RolesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::all();
-
+		$input = Input::only('name', 'active');
 		$this->rolesUpdateForm->validate($input);
 
 		$role = Role::findOrFail($id);

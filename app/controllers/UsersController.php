@@ -61,7 +61,7 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
+		$input = Input::only('name', 'email', 'password', 'password_confirmation', 'roles');
 		$this->usersCreateForm->validate($input);
 
 		if (empty($input['roles'])) $input['roles'] = array();
@@ -99,7 +99,7 @@ class UsersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::all();
+		$input = Input::only('name', 'email', 'password', 'password_confirmation', 'roles');
 		$this->usersUpdateForm->validate($input);
 
 		if (empty($input['roles'])) $input['roles'] = array();
@@ -134,8 +134,6 @@ class UsersController extends BaseController {
 		if ($id == Auth::user()->id)
 		{
 			Auth::logout();
-
-			return Redirect::home()->withMessage(Bootstrap::success('User has been destroyed.', true));
 		}
 
 		return Redirect::route('admin.users.index')->withMessage(Bootstrap::success('User has been destroyed.', true));
