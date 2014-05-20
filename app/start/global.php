@@ -70,7 +70,7 @@ App::error(function(\Project\Forms\Exceptions\FormValidationException $exception
 
 /*
 |--------------------------------------------------------------------------
-| Application Not Foung Error Handler
+| Application Not Found Error Handler
 |--------------------------------------------------------------------------
 |
 | Here you may handle any not found errors that occur in your application,
@@ -81,6 +81,11 @@ App::error(function(\Project\Forms\Exceptions\FormValidationException $exception
 */
 
 App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $exception)
+{
+	return Redirect::route('notfound');
+});
+
+App::error(function(\Illuminate\Database\Eloquent\ModelNotFoundException $exception)
 {
 	return Redirect::route('notfound');
 });
