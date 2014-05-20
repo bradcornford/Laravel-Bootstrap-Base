@@ -91,3 +91,23 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Current User Filter
+|--------------------------------------------------------------------------
+|
+| The user filter is responsible for protecting your application against
+| user proflie updates from the wrong user.
+|
+*/
+
+Route::filter('currentUser', function($route)
+{
+	if (Auth::guest()) return Redirect::guest('login');
+
+	if (Auth::user()->id != $route->parameter('user'))
+	{
+		return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
+	}
+});

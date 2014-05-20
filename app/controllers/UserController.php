@@ -30,6 +30,8 @@ class UserController extends BaseController {
 	{
 		$this->registerForm = $registerForm;
 		$this->userUpdateForm = $userUpdateForm;
+
+		$this->beforeFilter('currentUser', array('only' => 'show', 'edit', 'update', 'destroy'));
 	}
 
 	/**
@@ -70,11 +72,6 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
-		if ($id != Auth::user()->id)
-		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
-		}
-
 		$user = Auth::user();
 
 		return View::make('users.show', compact('user'));
@@ -89,12 +86,7 @@ class UserController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		if ($id != Auth::user()->id)
-		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
-		}
-
-		$user = Auth::user();
+		$user = User::findOrFail($id);
 
 		return View::make('users.edit', compact('user'));
 	}
@@ -108,15 +100,11 @@ class UserController extends BaseController {
 	 */
 	public function update($id)
 	{
-		if ($id != Auth::user()->id)
-		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
-		}
+		$user = User::findOrFail($id);
 
 		$input = Input::only('name', 'email', 'password', 'password_confirmation');
 		$this->userUpdateForm->validate($input);
 
-		$user = Auth::user();
 		$user->name = $input['name'];
 		$user->email = $input['email'];
 
@@ -140,12 +128,7 @@ class UserController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if ($id != Auth::user()->id)
-		{
-			return Redirect::home()->withMessage(Bootstrap::danger('You dont permission to access this page.', true));
-		}
-
-		$user = Auth::user();
+		$user = User::findOrFail($id);
 		$user->delete();
 
 		Auth::logout();
