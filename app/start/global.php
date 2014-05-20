@@ -70,6 +70,23 @@ App::error(function(\Project\Forms\Exceptions\FormValidationException $exception
 
 /*
 |--------------------------------------------------------------------------
+| Application Not Foung Error Handler
+|--------------------------------------------------------------------------
+|
+| Here you may handle any not found errors that occur in your application,
+| including logging them or displaying custom views for specific errors.
+| If nothing is returned, the default error view is shown, which includes
+| a detailed stack trace during debug.
+|
+*/
+
+App::error(function(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $exception)
+{
+	return Redirect::route('notfound');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Maintenance Mode Handler
 |--------------------------------------------------------------------------
 |

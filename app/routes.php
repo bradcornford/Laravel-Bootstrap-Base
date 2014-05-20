@@ -1,23 +1,27 @@
 <?php
 
 Route::get('/', array('as' => 'home', 'uses' => 'IndexController@index'));
+Route::get('/404', array('as' => 'notfound', 'uses' => 'IndexController@notfound'));
 
-Route::get('password/reset', array('as' => 'password.remind', 'uses' => 'PasswordController@remind'));
-Route::post('password/reset', array('as' => 'password.request', 'uses' => 'PasswordController@request'));
-Route::get('password/reset/{token}', array('as' => 'password.reset', 'uses' => 'PasswordController@reset'));
-Route::post('password/reset/{token}', array('as' => 'password.update', 'uses' => 'PasswordController@update'));
+Route::group(array('before' => 'guest'), function()
+{
+    Route::get('register', array('as' =>'register', 'uses' => 'UserController@create'));
+    Route::resource('user', 'UserController', array('only' => array('create', 'store')));
 
-Route::get('login', array('as' =>'login', 'uses' => 'SessionsController@create'));
-Route::get('logout', array('as' =>'logout', 'uses' => 'SessionsController@destroy'));
-Route::resource('sessions', 'SessionsController', array('only' => array('create', 'store', 'destroy')));
-
-Route::get('register', array('as' =>'register', 'uses' => 'UserController@create'));
-Route::resource('user', 'UserController', array('only' => array('create', 'store')));
+    Route::get('password/reset', array('as' => 'password.remind', 'uses' => 'PasswordController@remind'));
+    Route::post('password/reset', array('as' => 'password.request', 'uses' => 'PasswordController@request'));
+    Route::get('password/reset/{token}', array('as' => 'password.reset', 'uses' => 'PasswordController@reset'));
+    Route::post('password/reset/{token}', array('as' => 'password.update', 'uses' => 'PasswordController@update'));
+});
 
 Route::group(array('before' => 'auth'), function()
 {
     Route::resource('user', 'UserController', array('except' => array('index', 'create', 'store')));
 });
+
+Route::get('login', array('as' =>'login', 'uses' => 'SessionsController@create'));
+Route::get('logout', array('as' =>'logout', 'uses' => 'SessionsController@destroy'));
+Route::resource('sessions', 'SessionsController', array('only' => array('create', 'store', 'destroy')));
 
 Route::group(array('prefix' => 'admin', 'before' => 'auth.admin'), function()
 {
