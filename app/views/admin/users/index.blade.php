@@ -10,7 +10,11 @@ Administration | Users
 
 	<div class="row">
 
-		<h1>Users</h1>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+			<h1>Users</h1>
+
+		</div>
 
 		<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
 

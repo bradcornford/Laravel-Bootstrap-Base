@@ -4,9 +4,13 @@
 
 	<div class="row">
 
-		<h1>Homepage</h1>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-		<p>Welcome</p>
+			<h1>Homepage</h1>
+
+			<p>Welcome</p>
+
+		</div>
 
 	</div>
 

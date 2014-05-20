@@ -10,9 +10,13 @@ Profile
 
 	<div class="row">
 
-		<h1>Welcome {{ Auth::user()->present()->name }}</h1>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
+			<h1>Welcome {{ Auth::user()->present()->name }}</h1>
+
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1">
 
 			<h4>Update Account</h4>
 

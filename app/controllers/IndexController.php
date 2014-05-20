@@ -12,4 +12,14 @@ class IndexController extends BaseController {
 		return View::make('index');
 	}
 
+	/**
+	 * Display a not found view.
+	 *
+	 * @return Response
+	 */
+	public function notfound()
+	{
+		return View::make('errors.404');
+	}
+
 }
