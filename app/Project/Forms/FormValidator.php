@@ -65,6 +65,18 @@ abstract class FormValidator implements FormValidationInterface {
 	}
 
 	/**
+	 * Set the validation rules
+	 *
+	 * @param array $rlues
+	 *
+	 * @return void
+	 */
+	protected function setValidationRules($rlues)
+	{
+		$this->rules = $rlues;
+	}
+
+	/**
 	 * Get the validation errors
 	 *
 	 * @return \Illuminate\Support\MessageBag
