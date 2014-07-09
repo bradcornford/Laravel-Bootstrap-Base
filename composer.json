@@ -4,13 +4,13 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "4.2.*",
 		"cornford/bootstrapper": "1.*"
 	},
-	"require-dev": {
-		"fzaninotto/faker": "v1.3.0",
-		"way/generators": "2.6",
-		"jonphipps/idehelper": "v0.2.1"
+	"require-dec": {
+		"fzaninotto/faker": "1.*",
+		"way/generators": "2.*",
+		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [
